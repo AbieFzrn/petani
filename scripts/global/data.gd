@@ -87,19 +87,11 @@ const FISH_DATA = {
 
 # ======== Machines ========
 const MACHINE_SCENE = {
-	Enum.Machine.SPRINKLER : {
-		"scene": preload("res://scenes/machines/sprinkler.tscn"),
-		},
-	Enum.Machine.FISHER : {
-		"scene": preload("res://scenes/machines/fisherman.tscn"),
-		},
-	Enum.Machine.SCARECROW :{
-		"scene":preload("res://scenes/machines/scare_crow.tscn"),
-	} ,
-	Enum.Machine.DELETE : {
-		"scene":preload("res://scenes/machines/scare_crow.tscn"),
-		}
-	}
+	Enum.Machine.SPRINKLER: {"scene": null},
+	Enum.Machine.FISHER: {"scene": null},
+	Enum.Machine.SCARECROW: {"scene": null},
+	Enum.Machine.DELETE: {"scene": null}
+}
 
 const MACHINE_PREVIEW_TEXTURES = {
 	Enum.Machine.SPRINKLER: {'texture':preload("res://graphics/icons/sprinkler.png"), 'offset': Vector2i(2,0)},

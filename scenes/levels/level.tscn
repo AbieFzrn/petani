@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://cc04b5oyjs2oq" path="res://graphics/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetField.png" id="1_b2cq8"]
 [ext_resource type="Script" uid="uid://8vpund5t01cr" path="res://scripts/level.gd" id="1_urvlt"]
-[ext_resource type="PackedScene" uid="uid://b0mnopqlx5dix" path="res://scenes/characters/player.tscn" id="2_b2cq8"]
 [ext_resource type="Texture2D" uid="uid://8cd75smu56l5" path="res://graphics/Ninja Adventure - Asset Pack/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="2_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://ca64obpsrf5sr" path="res://graphics/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Water.png" id="3_xb4v1"]
 [ext_resource type="Texture2D" uid="uid://vrdy2gp08qay" path="res://graphics/tilesets/soil_water.png" id="5_d4w6o"]
@@ -11,18 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://iqt34unfal58" path="res://scenes/objects/tree.tscn" id="9_7pb6i"]
 [ext_resource type="PackedScene" uid="uid://tnt55tpg05br" path="res://scenes/objects/simple_object.tscn" id="10_rmjfq"]
 [ext_resource type="PackedScene" uid="uid://cntexmap73t0k" path="res://scenes/ui/plant_info_control.tscn" id="11_7pb6i"]
-[ext_resource type="PackedScene" uid="uid://bfjaiku70hbc8" path="res://scenes/levels/house.tscn" id="12_8iyoh"]
 [ext_resource type="Script" uid="uid://3y7y6rj4ff4v" path="res://scripts/characters/planter.gd" id="12_c3o0d"]
 [ext_resource type="SpriteFrames" uid="uid://b8yd7ds814ouq" path="res://graphics/characters/tractor/planter_anim.tres" id="12_lp2ca"]
 [ext_resource type="SpriteFrames" uid="uid://358w6nwhsdru" path="res://graphics/characters/tractor/waterer_anim.tres" id="13_4ab0e"]
 [ext_resource type="Texture2D" uid="uid://da1u0rhfjt8a3" path="res://graphics/weather/drops.png" id="13_qogh7"]
 [ext_resource type="Script" uid="uid://dqcroyb04t62t" path="res://scripts/characters/waterer.gd" id="14_c8ctg"]
 [ext_resource type="SpriteFrames" uid="uid://dc7iqnl4jhcve" path="res://graphics/characters/tractor/harvester_anim.tres" id="14_p62il"]
-[ext_resource type="Texture2D" uid="uid://capn581vt8q7g" path="res://graphics/icons/sprinkler.png" id="15_mq31s"]
 [ext_resource type="PackedScene" uid="uid://dg6oaylgfaiwo" path="res://scenes/ui/inventory.tscn" id="16_jyre1"]
 [ext_resource type="PackedScene" uid="uid://tqv0e2o3f1h1" path="res://scenes/ui/shop_ui.tscn" id="16_qhnmj"]
 [ext_resource type="Script" uid="uid://ba3symw0ugxau" path="res://scripts/characters/harvester.gd" id="16_xog87"]
-[ext_resource type="PackedScene" uid="uid://4t651cjey82n" path="res://scenes/ui/keyboard_control_hint_ui.tscn" id="17_jyre1"]
 
 [sub_resource type="Gradient" id="Gradient_rmjfq"]
 offsets = PackedFloat32Array(0, 0.21830986, 0.42488262, 1)
@@ -2387,13 +2383,6 @@ process_material = SubResource("ParticleProcessMaterial_5mi6g")
 [node name="Objects" type="Node2D" parent="." unique_id=1978244975]
 y_sort_enabled = true
 
-[node name="Player" parent="Objects" unique_id=1992078178 instance=ExtResource("2_b2cq8")]
-unique_name_in_owner = true
-position = Vector2(-72, 41)
-
-[node name="House" parent="Objects" unique_id=728922479 instance=ExtResource("12_8iyoh")]
-position = Vector2(319, -211)
-
 [node name="Trees" type="Node2D" parent="Objects" unique_id=788674937]
 y_sort_enabled = true
 
@@ -2750,8 +2739,6 @@ color = Color(0.04780578, 0.015162113, 0.092368476, 1)
 
 [node name="Inventory" parent="Overlay/CanvasLayer" unique_id=1204295102 instance=ExtResource("16_jyre1")]
 
-[node name="KeyboardControlHintUI" parent="Overlay/CanvasLayer" unique_id=588791315 instance=ExtResource("17_jyre1")]
-
 [node name="RainParticles2D" type="GPUParticles2D" parent="Overlay" unique_id=703477973]
 material = SubResource("CanvasItemMaterial_8iyoh")
 position = Vector2(66, -102)
@@ -2761,12 +2748,6 @@ texture = ExtResource("13_qogh7")
 lifetime = 2.0
 visibility_rect = Rect2(-600, -400, 1200, 810)
 process_material = SubResource("ParticleProcessMaterial_mq31s")
-
-[node name="PreviewMachineSprite2D" type="Sprite2D" parent="Overlay" unique_id=386698021]
-visible = false
-modulate = Color(1, 1, 1, 0.5921569)
-texture = ExtResource("15_mq31s")
-centered = false
 
 [node name="Timers" type="Node" parent="." unique_id=1515476947]
 
@@ -2790,14 +2771,9 @@ stream = SubResource("AudioStreamMP3_lp2ca")
 volume_db = -20.0
 autoplay = true
 
-[connection signal="update_hint_ui_keys" from="." to="Overlay/CanvasLayer/KeyboardControlHintUI" method="_on_level_update_hint_ui_keys"]
-[connection signal="build" from="Objects/Player" to="." method="_on_player_build"]
-[connection signal="change_machine" from="Objects/Player" to="." method="_on_player_change_machine"]
-[connection signal="close_shop" from="Objects/Player" to="." method="_on_player_close_shop"]
-[connection signal="day_change" from="Objects/Player" to="." method="_on_player_day_change"]
-[connection signal="diagnose" from="Objects/Player" to="." method="_on_player_diagnose"]
-[connection signal="do_action" from="Objects/Player" to="." method="_on_player_do_action"]
-[connection signal="tool_use" from="Objects/Player" to="." method="_on_player_tool_use"]
-[connection signal="update_control_ui" from="Objects/Player" to="Overlay/CanvasLayer/KeyboardControlHintUI" method="_on_player_update_control_ui"]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1377556871]
+zoom = Vector2(3, 3)
+limit_smoothed = true
+
 [connection signal="close" from="Overlay/CanvasLayer/ShopUI" to="." method="_on_player_close_shop"]
 [connection signal="timeout" from="Timers/BlobTimer" to="." method="_on_blob_timer_timeout"]
